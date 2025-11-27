@@ -1,8 +1,8 @@
 // pages/api/login.js
 
-import User from "../../models/User.js";
+import User from "../../../Backend-Coding4u-main/models/User.js";
 import jwt from "jsonwebtoken";
-import  connectDB from "../../utils/db.js" ;
+import  connectDB from "../../../Backend-Coding4u-main/utils/db.js" ;
 // Connect to MongoDB
 connectDB();
 
