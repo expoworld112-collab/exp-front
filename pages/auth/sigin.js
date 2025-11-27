@@ -1,9 +1,8 @@
 // pages/api/login.js
 
-import User from "../../models/user.js";
+import User from "../../models/User.js";
 import jwt from "jsonwebtoken";
-import connectDB from "../../helpers/dbConnect.js";
-
+import  connectDB from "../../utils/db.js" ;
 // Connect to MongoDB
 connectDB();
 
