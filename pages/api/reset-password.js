@@ -1,6 +1,6 @@
 // pages/api/reset-password.js
 
-import { resetPassword } from "../../controllers/auth.js";
+import { resetPassword } from "../../../Backend-Coding4u-main/controllers/auth.js";
 
 export default async function handler(req, res) {
   // CORS
