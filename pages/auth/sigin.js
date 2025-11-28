@@ -1,4 +1,4 @@
-import connectDB from "../../../Backend-Coding4u-main/config/db.js";
+import connectDB from "../lib/db.js";
 import User from "@/lib/models/User";
 import jwt from "jsonwebtoken";
 
