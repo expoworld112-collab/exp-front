@@ -1,5 +1,5 @@
 import connectDB from "../lib/db.js";
-import User from "@/lib/models/User";
+import User from "../../models/User.js";
 import jwt from "jsonwebtoken";
 
 connectDB();
