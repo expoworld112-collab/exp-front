@@ -51,25 +51,37 @@ export default async function handler(req, res) {
   }
 }
 // Example: frontend/pages/auth/signin.js
+// export async function signIn(email, password) {
+//   try {
+//     const response = await fetch("https://your-backend-domain.com/api/login", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ email, password }),
+//       credentials: "include",
+//     });
+
+//     const data = await response.json();
+
+//     if (response.ok) {
+//       console.log("Logged in:", data);
+//       alert("Sign in successful!");
+//     } else {
+//       alert(data.error || "Login failed");
+//     }
+//   } catch (err) {
+//     console.error("Network error:", err);
+//     alert("Network error. Please try again.");
+//   }
+// }
+// pages/auth/signin.js
 export async function signIn(email, password) {
-  try {
-    const response = await fetch("https://your-backend-domain.com/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-      credentials: "include",
-    });
+  const res = await fetch("/api/signin", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
 
-    const data = await response.json();
-
-    if (response.ok) {
-      console.log("Logged in:", data);
-      alert("Sign in successful!");
-    } else {
-      alert(data.error || "Login failed");
-    }
-  } catch (err) {
-    console.error("Network error:", err);
-    alert("Network error. Please try again.");
-  }
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Sign in failed");
+  return data;
 }
