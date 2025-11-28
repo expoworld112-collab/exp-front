@@ -1,5 +1,5 @@
-import { preSignup } from "../../pages/api/pre-signup.js";
-import corsAndProxy from "../../../Backend-Coding4u-main/lib/api/apiProxy.js";
+import { preSignup } from "./pre-signup";
+import corsAndProxy from "@/lib/api/apiProxy";
 
 export default async function handler(req, res) {
   const allowedOrigins = ["https://efronts.vercel.app", "http://localhost:3000"];
@@ -23,4 +23,3 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Internal server error" });
   }
 }
-
