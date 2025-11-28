@@ -50,3 +50,26 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Internal server error" });
   }
 }
+// Example: frontend/pages/auth/signin.js
+export async function signIn(email, password) {
+  try {
+    const response = await fetch("https://your-backend-domain.com/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+      credentials: "include",
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("Logged in:", data);
+      alert("Sign in successful!");
+    } else {
+      alert(data.error || "Login failed");
+    }
+  } catch (err) {
+    console.error("Network error:", err);
+    alert("Network error. Please try again.");
+  }
+}
