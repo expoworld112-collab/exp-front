@@ -7,7 +7,6 @@ export function runvalidation (req,res,next){
     }
     next();
 }
-import { check, validationResult } from "express-validator";
 
 // Middleware to handle validation results
 export const runValidation = (req, res, next) => {
