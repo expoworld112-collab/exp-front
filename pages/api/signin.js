@@ -1,6 +1,6 @@
 // pages/api/signin.js
-import connectDB from "../../lib/db.js";
-import User from "../../lib/models/User";
+import connectDB from "../../pages/lib/db.js";
+import User from "../../lib/models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 

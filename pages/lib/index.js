@@ -45,4 +45,3 @@ export default {
   forgotPasswordValidator,
   resetPasswordValidator,
 };
-const { body, validationResult } = require('express-validator');
