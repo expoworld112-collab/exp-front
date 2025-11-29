@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import nodemailer from "nodemailer";
+import nodemailer from "nodemailer"; // Only backend
 import User from "../../models/User.js";
 
 // EMAIL TRANSPORTER
@@ -19,8 +19,9 @@ export const preSignup = async (req, res) => {
   try {
     const { name, username, email, password } = req.body;
 
-    if (!name || !username || !email || !password)
+    if (!name || !username || !email || !password) {
       return res.status(400).json({ error: "All fields are required" });
+    }
 
     // Check if email exists
     const existing = await User.findOne({ email: email.toLowerCase() });
@@ -60,11 +61,9 @@ export const activateAccount = async (req, res) => {
   try {
     const { token } = req.body;
 
-    if (!token)
-      return res.status(400).json({ error: "Token missing" });
+    if (!token) return res.status(400).json({ error: "Token missing" });
 
     const decoded = jwt.verify(token, process.env.JWT_ACCOUNT_ACTIVATION);
-
     const { name, username, email, password } = decoded;
 
     const user = new User({
@@ -80,10 +79,9 @@ export const activateAccount = async (req, res) => {
     return res.json({ message: "Account activated successfully" });
   } catch (err) {
     console.error(err);
-    res.status(400).json({ error: "Invalid or expired token" });
+    return res.status(400).json({ error: "Invalid or expired token" });
   }
 };
-
 
 /* ------------------------------
    SIGN IN
@@ -112,7 +110,6 @@ export const signIn = async (req, res) => {
         email: user.email,
       },
     });
-
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Server error" });

@@ -3,8 +3,6 @@ import connectDB from "../../helpers/dbConnect.js";
 import User from "../../models/User.js";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
-import corsAndProxy from "../../lib/apiProxy";
-
 
 connectDB();
 
@@ -26,23 +24,22 @@ export default async function handler(req, res) {
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
-
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   if (req.method === "OPTIONS") return res.status(200).end();
-  if (req.method !== "POST")
-    return res.status(405).json({ error: "Method not allowed" });
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   try {
     const { name, username, email, password } = req.body;
-    if (!name || !username || !email || !password)
+
+    if (!name || !username || !email || !password) {
       return res.status(422).json({ error: "All fields are required" });
+    }
 
     const existingUser = await User.findOne({ email });
-    if (existingUser)
-      return res.status(400).json({ error: "Email is already registered" });
+    if (existingUser) return res.status(400).json({ error: "Email is already registered" });
 
     const token = jwt.sign(
       { name, username, email, password },
@@ -62,7 +59,4 @@ export default async function handler(req, res) {
     console.error(err);
     res.status(500).json({ error: "Server error" });
   }
-}
-export default function handler(req, res) {
-  return corsAndProxy(req, res, "/api/signin");
 }
