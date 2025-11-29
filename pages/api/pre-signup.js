@@ -1,5 +1,5 @@
 import { preSignup } from "./pre-signup";
-import corsAndProxy from "../lib/api/apiProxy.js";
+import corsAndProxy from "../lib/apiProxy.js";
 
 export default async function handler(req, res) {
   const allowedOrigins = ["https://efronts.vercel.app", "http://localhost:3000"];

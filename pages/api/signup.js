@@ -1,6 +1,6 @@
 // pages/api/signup.js
 import connectDB from "../../helpers/dbConnect.js";
-import User from "../../models/user.js";
+import User from "../../models/User.js";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import corsAndProxy from "../../lib/apiProxy";
