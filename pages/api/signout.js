@@ -25,7 +25,7 @@
 // export default function handler(req, res) {
 //   return corsAndProxy(req, res, "/api/signout");
 // }
-import { signout } from "../../controllers/auth.js";
+import { signout } from "../../../controllers/auth.js";
 
 export default function handler(req, res) {
   const allowedOrigins = ["https://efronts.vercel.app", "http://localhost:3000"];
