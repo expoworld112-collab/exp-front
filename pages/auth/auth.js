@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
-import User from "../models/User.js";
+import User from "../../models/User.js";
 
 // EMAIL TRANSPORTER
 const transporter = nodemailer.createTransport({
